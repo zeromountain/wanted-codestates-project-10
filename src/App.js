@@ -1,7 +1,8 @@
 import React from 'react';
+import GlobalNavigationBar from './components/GlobalNavigationBar';
 
 function App() {
-  return <h2>헬로 휴먼스케이프</h2>;
+  return <GlobalNavigationBar />;
 }
 
 export default App;
