@@ -5,7 +5,7 @@ import PropTypes from 'prop-types';
 const Search = ({searchActive}) => {
   return (
     <div className="w-full flex flex-col items-center">
-      <div className="desktop:max-w-700 w-full flex flex-col mx-auto px-5">
+      <div className="desktop:max-w-[700px] w-full flex flex-col mx-auto px-5">
         {/* 1040px 이상일때 max-width: 700 */}
         <div className="w-full desktop:text-title text-subtitle font-bold mb-5 text-center">
           국내 모든 임상시험 검색하고
