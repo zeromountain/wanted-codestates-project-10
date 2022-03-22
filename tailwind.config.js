@@ -6,9 +6,6 @@ module.exports = {
       tablet: {max: '1039px'},
       desktop: '1040px',
     },
-    maxWidth: {
-      700: '700px',
-    },
     minHeight: {
       main: `calc(100vh - 120px)`,
     },
