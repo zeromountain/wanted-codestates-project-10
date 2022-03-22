@@ -16,7 +16,7 @@ const GlobalNavigationBar = () => {
 
   return (
     <header className="w-full h-14 bg-white">
-      <nav className="desktop:max-w-screen-desktop tablet:w-full px-5 h-full flex justify-between items-center mx-auto">
+      <nav className="desktop:max-w-[1040px] w-full px-5 h-full flex justify-between items-center mx-auto">
         <div className="">
           {/* 로고 */}
           <Logo className="h-6 cursor-pointer" />

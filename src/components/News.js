@@ -32,7 +32,7 @@ const News = () => {
       <div className="tablet:hidden flex flex-col pt-56">
         {/* 1040px 이상일 경우 News */}
         <div className="bg-[#369EFC] pt-6 pb-4">
-          <div className="desktop:max-w-700 w-full flex flex-col mx-auto px-5">
+          <div className="desktop:max-w-[700px] w-full flex flex-col mx-auto px-5">
             <div className="flex relative">
               <div className="flex flex-col">
                 <div className="text-white text-xmd font-bold mb-4">
