@@ -1,7 +1,8 @@
 import React from 'react';
 import {GrSearch} from 'react-icons/gr';
+import PropTypes from 'prop-types';
 
-const Search = () => {
+const Search = ({searchActive}) => {
   return (
     <div className="w-full flex flex-col items-center">
       <div className="desktop:max-w-700 w-full flex flex-col mx-auto px-5">
@@ -11,7 +12,7 @@ const Search = () => {
           <br />
           온라인으로 참여하기
         </div>
-        <div className="desktop:hidden w-full flex">
+        <div className="desktop:hidden w-full flex" onClick={searchActive}>
           {/* 1040px미만 검색창 */}
           <div className="w-full flex justify-between items-center px-5 py-3 shadow-sm cursor-pointer rounded-full bg-white">
             <div className=" text-gray-400 text-xs">
@@ -40,6 +41,10 @@ const Search = () => {
       </div>
     </div>
   );
+};
+
+Search.propTypes = {
+  searchActive: PropTypes.func.isRequired,
 };
 
 export default Search;

@@ -39,9 +39,7 @@ const GlobalNavigationBar = () => {
           </button>
         </div>
         {/* 드롭다운메뉴 */}
-        {isDropDownActive && (
-          <DropDownMenu isDropDownActive={isDropDownActive} ref={dropdownRef} />
-        )}
+        {isDropDownActive && <DropDownMenu ref={dropdownRef} />}
       </nav>
     </header>
   );
