@@ -2,7 +2,9 @@ import React from 'react';
 import {GrSearch} from 'react-icons/gr';
 import PropTypes from 'prop-types';
 
-const Search = ({searchActive, word, handleChangeWord}) => {
+import Recommend from './Recommend';
+
+const Search = ({searchActive, word, data, isLoading, handleChangeWord}) => {
   return (
     <div className="w-full flex flex-col items-center">
       <div className="desktop:max-w-[700px] w-full flex flex-col mx-auto px-5">
@@ -38,6 +40,9 @@ const Search = ({searchActive, word, handleChangeWord}) => {
             <button className="text-xmd font-bold rounded-tr-full rounded-br-full bg-blue-600 text-white px-8 py-4">
               검색
             </button>
+            {word.length != 0 && (
+              <Recommend data={data?.slice(0, 7)} isLoading={isLoading} />
+            )}
           </div>
         </div>
       </div>
@@ -49,6 +54,8 @@ Search.propTypes = {
   searchActive: PropTypes.func.isRequired,
   word: PropTypes.string.isRequired,
   handleChangeWord: PropTypes.func.isRequired,
+  data: PropTypes.array.isRequired,
+  isLoading: PropTypes.bool.isRequired,
 };
 
 export default Search;
