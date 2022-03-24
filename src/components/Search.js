@@ -4,7 +4,15 @@ import PropTypes from 'prop-types';
 
 import Recommend from './Recommend';
 
-const Search = ({searchActive, word, data, isLoading, handleChangeWord}) => {
+const Search = ({
+  searchActive,
+  word,
+  data,
+  isLoading,
+  handleChangeWord,
+  handleKeyMove,
+  selected,
+}) => {
   return (
     <div className="w-full flex flex-col items-center">
       <div className="desktop:max-w-[700px] w-full flex flex-col mx-auto px-5">
@@ -35,13 +43,18 @@ const Search = ({searchActive, word, data, isLoading, handleChangeWord}) => {
                 className="w-full outline-0"
                 value={word}
                 onChange={handleChangeWord}
+                onKeyDown={e => handleKeyMove(e, 'main')}
               />
             </div>
             <button className="text-xmd font-bold rounded-tr-full rounded-br-full bg-blue-600 text-white px-8 py-4">
               검색
             </button>
             {word.length != 0 && (
-              <Recommend data={data?.slice(0, 7)} isLoading={isLoading} />
+              <Recommend
+                data={data?.slice(0, 7)}
+                isLoading={isLoading}
+                selected={selected}
+              />
             )}
           </div>
         </div>
@@ -56,6 +69,8 @@ Search.propTypes = {
   handleChangeWord: PropTypes.func.isRequired,
   data: PropTypes.array.isRequired,
   isLoading: PropTypes.bool.isRequired,
+  handleKeyMove: PropTypes.func.isRequired,
+  selected: PropTypes.any,
 };
 
 export default Search;
