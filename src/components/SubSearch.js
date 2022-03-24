@@ -1,4 +1,4 @@
-import React, {forwardRef} from 'react';
+import React, {forwardRef, useEffect, useRef} from 'react';
 import {GrSearch} from 'react-icons/gr';
 import {FaArrowLeft} from 'react-icons/fa';
 import PropTypes from 'prop-types';
@@ -19,6 +19,11 @@ const SubSearch = forwardRef(
     },
     ref,
   ) => {
+    const inputRef = useRef(null);
+
+    useEffect(() => {
+      inputRef.current.focus();
+    }, []);
     return (
       <div
         className="w-full h-full fixed inset-0 z-[100] flex flex-col bg-white"
@@ -35,6 +40,7 @@ const SubSearch = forwardRef(
                 <div className="ml-2" />
                 <input
                   type="text"
+                  ref={inputRef}
                   placeholder="질환명을 입력해 주세요."
                   className="flex-1 outline-0"
                   value={word}
