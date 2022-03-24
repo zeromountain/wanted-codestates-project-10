@@ -28,6 +28,7 @@ const Main = () => {
         setMoveIdx(moveIdx + 1);
       }
       if (type === 'sub' && moveIdx < data.length) {
+        console.log(e.target);
         setMoveIdx(moveIdx + 1);
       }
     } else if (e.keyCode === 38) {

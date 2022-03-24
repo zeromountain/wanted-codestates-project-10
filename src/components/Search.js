@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {useEffect, useRef} from 'react';
 import {GrSearch} from 'react-icons/gr';
 import PropTypes from 'prop-types';
 
@@ -13,6 +13,11 @@ const Search = ({
   handleKeyMove,
   selected,
 }) => {
+  const inputRef = useRef(null);
+
+  useEffect(() => {
+    inputRef.current.focus();
+  }, []);
   return (
     <div className="w-full flex flex-col items-center">
       <div className="desktop:max-w-[700px] w-full flex flex-col mx-auto px-5">
@@ -39,6 +44,7 @@ const Search = ({
               <div className="pr-3" />
               <input
                 type="text"
+                ref={inputRef}
                 placeholder="질환명을 입력해 주세요."
                 className="w-full outline-0"
                 value={word}
