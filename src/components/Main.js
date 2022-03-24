@@ -10,7 +10,11 @@ import SubSearch from './SubSearch';
 
 const Main = () => {
   const {word} = useSelector(({form}) => form);
-  const {data = [], isLoading} = useGetSearchQuery(word, {skip: !word});
+  const {
+    data = [],
+    isLoading,
+    isFetching,
+  } = useGetSearchQuery(word, {skip: !word});
   const dispatch = useDispatch();
   const searchRef = useRef(null);
   const [isSearchActive, setIsSearchActive] = useActivate(searchRef, false);
@@ -54,6 +58,7 @@ const Main = () => {
           word={word}
           data={data}
           isLoading={isLoading}
+          isFetching={isFetching}
           handleChangeWord={handleChangeWord}
           handleKeyMove={handleKeyMove}
           selected={selected}
@@ -67,6 +72,7 @@ const Main = () => {
           word={word}
           data={data}
           isLoading={isLoading}
+          isFetching={isFetching}
           handleChangeWord={handleChangeWord}
           handleKeyMove={handleKeyMove}
           selected={selected}
