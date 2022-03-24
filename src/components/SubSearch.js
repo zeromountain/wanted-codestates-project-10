@@ -7,7 +7,18 @@ import Recommend from './Recommend';
 // eslint-disable-next-line react/prop-types
 // eslint-disable-next-line react/display-name
 const SubSearch = forwardRef(
-  ({searchActive, word, handleChangeWord, data, isLoading}, ref) => {
+  (
+    {
+      searchActive,
+      word,
+      handleChangeWord,
+      data,
+      isLoading,
+      handleKeyMove,
+      selected,
+    },
+    ref,
+  ) => {
     return (
       <div
         className="w-full h-full fixed inset-0 z-[100] flex flex-col bg-white"
@@ -28,13 +39,14 @@ const SubSearch = forwardRef(
                   className="flex-1 outline-0"
                   value={word}
                   onChange={handleChangeWord}
+                  onKeyDown={e => handleKeyMove(e, 'sub')}
                 />
                 <div className="ml-2" />
                 <GrSearch />
               </div>
             </div>
           </div>
-          <Recommend data={data} isLoading={isLoading} />
+          <Recommend data={data} isLoading={isLoading} selected={selected} />
         </div>
       </div>
     );
@@ -47,6 +59,8 @@ SubSearch.propTypes = {
   handleChangeWord: PropTypes.func.isRequired,
   data: PropTypes.array.isRequired,
   isLoading: PropTypes.bool.isRequired,
+  handleKeyMove: PropTypes.func.isRequired,
+  selected: PropTypes.any,
 };
 
 export default SubSearch;
