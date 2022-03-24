@@ -2,7 +2,7 @@ import React from 'react';
 import {GrSearch} from 'react-icons/gr';
 import PropTypes from 'prop-types';
 
-const Search = ({searchActive}) => {
+const Search = ({searchActive, word, handleChangeWord}) => {
   return (
     <div className="w-full flex flex-col items-center">
       <div className="desktop:max-w-[700px] w-full flex flex-col mx-auto px-5">
@@ -16,7 +16,7 @@ const Search = ({searchActive}) => {
           {/* 1040px미만 검색창 */}
           <div className="w-full flex justify-between items-center px-5 py-3 shadow-sm cursor-pointer rounded-full bg-white">
             <div className=" text-gray-400 text-xs">
-              질환명을 입력해 주세요.
+              {word && word.length != 0 ? word : '질환명을 입력해 주세요.'}
             </div>
             <GrSearch />
           </div>
@@ -31,6 +31,8 @@ const Search = ({searchActive}) => {
                 type="text"
                 placeholder="질환명을 입력해 주세요."
                 className="w-full outline-0"
+                value={word}
+                onChange={handleChangeWord}
               />
             </div>
             <button className="text-xmd font-bold rounded-tr-full rounded-br-full bg-blue-600 text-white px-8 py-4">
@@ -45,6 +47,8 @@ const Search = ({searchActive}) => {
 
 Search.propTypes = {
   searchActive: PropTypes.func.isRequired,
+  word: PropTypes.string.isRequired,
+  handleChangeWord: PropTypes.func.isRequired,
 };
 
 export default Search;

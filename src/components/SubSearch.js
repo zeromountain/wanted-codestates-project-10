@@ -5,7 +5,7 @@ import PropTypes from 'prop-types';
 
 // eslint-disable-next-line react/prop-types
 // eslint-disable-next-line react/display-name
-const SubSearch = forwardRef(({searchActive}, ref) => {
+const SubSearch = forwardRef(({searchActive, word, handleChangeWord}, ref) => {
   return (
     <div
       className="w-full h-full fixed inset-0 z-[100] flex flex-col bg-white"
@@ -21,6 +21,8 @@ const SubSearch = forwardRef(({searchActive}, ref) => {
                 type="text"
                 placeholder="질환명을 입력해 주세요."
                 className="flex-1 outline-0"
+                value={word}
+                onChange={handleChangeWord}
               />
               <div className="ml-2" />
               <GrSearch />
@@ -34,6 +36,8 @@ const SubSearch = forwardRef(({searchActive}, ref) => {
 
 SubSearch.propTypes = {
   searchActive: PropTypes.func.isRequired,
+  word: PropTypes.string.isRequired,
+  handleChangeWord: PropTypes.func.isRequired,
 };
 
 export default SubSearch;
