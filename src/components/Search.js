@@ -9,6 +9,7 @@ const Search = ({
   word,
   data,
   isLoading,
+  isFetching,
   handleChangeWord,
   handleKeyMove,
   selected,
@@ -59,6 +60,7 @@ const Search = ({
               <Recommend
                 data={data?.slice(0, 7)}
                 isLoading={isLoading}
+                isFetching={isFetching}
                 selected={selected}
               />
             )}
@@ -75,6 +77,7 @@ Search.propTypes = {
   handleChangeWord: PropTypes.func.isRequired,
   data: PropTypes.array.isRequired,
   isLoading: PropTypes.bool.isRequired,
+  isFetching: PropTypes.bool.isRequired,
   handleKeyMove: PropTypes.func.isRequired,
   selected: PropTypes.any,
 };

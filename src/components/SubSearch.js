@@ -14,6 +14,7 @@ const SubSearch = forwardRef(
       handleChangeWord,
       data,
       isLoading,
+      isFetching,
       handleKeyMove,
       selected,
     },
@@ -24,6 +25,7 @@ const SubSearch = forwardRef(
     useEffect(() => {
       inputRef.current.focus();
     }, []);
+
     return (
       <div
         className="w-full h-full fixed inset-0 z-[100] flex flex-col bg-white"
@@ -52,7 +54,12 @@ const SubSearch = forwardRef(
               </div>
             </div>
           </div>
-          <Recommend data={data} isLoading={isLoading} selected={selected} />
+          <Recommend
+            data={data}
+            isLoading={isLoading}
+            isFetching={isFetching}
+            selected={selected}
+          />
         </div>
       </div>
     );
@@ -65,6 +72,7 @@ SubSearch.propTypes = {
   handleChangeWord: PropTypes.func.isRequired,
   data: PropTypes.array.isRequired,
   isLoading: PropTypes.bool.isRequired,
+  isFetching: PropTypes.bool.isRequired,
   handleKeyMove: PropTypes.func.isRequired,
   selected: PropTypes.any,
 };
