@@ -10,7 +10,8 @@ import SubSearch from './SubSearch';
 
 const Main = () => {
   const {word} = useSelector(({form}) => form);
-  const {data} = useGetSearchQuery(word);
+  const {data = [], isLoading} = useGetSearchQuery(word, {skip: !word});
+  console.log(data, isLoading);
   const dispatch = useDispatch();
   const searchRef = useRef(null);
   const [isSearchActive, setIsSearchActive] = useActivate(searchRef, false);
@@ -29,6 +30,8 @@ const Main = () => {
         <Search
           searchActive={searchActive}
           word={word}
+          data={data}
+          isLoading={isLoading}
           handleChangeWord={handleChangeWord}
         />
         <News />
@@ -38,6 +41,8 @@ const Main = () => {
           ref={searchRef}
           searchActive={searchActive}
           word={word}
+          data={data}
+          isLoading={isLoading}
           handleChangeWord={handleChangeWord}
         />
       )}
