@@ -30,7 +30,8 @@ const Main = () => {
     dispatch(changeWord({word: e.target.value}));
     if (timer) clearTimeout(timer);
     const newTimer = setTimeout(() => {
-      setDebounceValue(word);
+      const value = e.target.value;
+      setDebounceValue(value);
     }, 500);
     setTimer(newTimer);
   };
