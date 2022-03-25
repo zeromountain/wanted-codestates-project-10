@@ -43,7 +43,6 @@ const Main = () => {
         setMoveIdx(moveIdx + 1);
       }
       if (type === 'sub' && moveIdx < data.length) {
-        console.log(e.target);
         setMoveIdx(moveIdx + 1);
       }
     } else if (e.keyCode === 38) {
@@ -51,6 +50,11 @@ const Main = () => {
       if (moveIdx > 0) {
         setMoveIdx(moveIdx - 1);
       }
+    } else if (e.keyCode === 13) {
+      // Enter
+      window.open(
+        `https://clinicaltrialskorea.com/studies?condition=${data[moveIdx].name}`,
+      );
     }
   };
 
