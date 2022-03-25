@@ -10,20 +10,30 @@ import SubSearch from './SubSearch';
 
 const Main = () => {
   const {word} = useSelector(({form}) => form);
-  const {
-    data = [],
-    isLoading,
-    isFetching,
-  } = useGetSearchQuery(word, {skip: !word});
   const dispatch = useDispatch();
   const searchRef = useRef(null);
   const [isSearchActive, setIsSearchActive] = useActivate(searchRef, false);
   const [moveIdx, setMoveIdx] = useState(-1);
   const [selected, setSelected] = useState(null);
+  const [timer, setTimer] = useState(0);
+  const [debounceValue, setDebounceValue] = useState(null);
+
+  const {
+    data = [],
+    isLoading,
+    isFetching,
+  } = useGetSearchQuery(debounceValue, {skip: !debounceValue});
 
   const searchActive = () => setIsSearchActive(!isSearchActive);
 
-  const handleChangeWord = e => dispatch(changeWord({word: e.target.value}));
+  const handleChangeWord = e => {
+    dispatch(changeWord({word: e.target.value}));
+    if (timer) clearTimeout(timer);
+    const newTimer = setTimeout(() => {
+      setDebounceValue(word);
+    }, 500);
+    setTimer(newTimer);
+  };
 
   const handleKeyMove = (e, type) => {
     if (e.keyCode === 40) {
@@ -45,7 +55,6 @@ const Main = () => {
 
   useEffect(() => {
     if (data.length != 0 && moveIdx != -1 && moveIdx < data.length) {
-      console.log(data[moveIdx]);
       setSelected(data[moveIdx].id);
     }
   }, [moveIdx]);
