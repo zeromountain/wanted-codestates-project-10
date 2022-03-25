@@ -7,7 +7,7 @@ const Recommend = ({data, isLoading, isFetching, selected}) => {
     window.open(`https://clinicaltrialskorea.com/studies?condition=${name}`);
   };
   return (
-    <div className="w-full flex flex-col desktop:absolute desktop:top-[100%] desktop:left-0 desktop:mt-2 px-6 pt-6 pb-4 bg-white desktop:rounded-3xl">
+    <div className="w-full flex flex-col desktop:absolute desktop:top-[100%] desktop:left-0 desktop:mt-2 px-6 pt-6 pb-4 bg-white desktop:rounded-3xl overflow-y-auto">
       <div className="text-gray-400 text-xs">
         {isLoading || isFetching
           ? '검색중...'
@@ -18,6 +18,7 @@ const Recommend = ({data, isLoading, isFetching, selected}) => {
       {data.map(item => (
         <div
           key={item.id}
+          tabIndex="0"
           className={`${
             selected === item.id && 'font-bold text-[2rem]'
           } flex items-center py-2 cursor-pointer hover:font-bold hover:text-[2rem]`}
