@@ -36,18 +36,36 @@ const Main = () => {
     setTimer(newTimer);
   };
 
-  const handleKeyMove = (e, type) => {
+  const handleKeyMove = (e, type, ref) => {
     if (e.keyCode === 40) {
       // 아래 방향키
       if (type === 'main' && moveIdx < 6) {
         setMoveIdx(moveIdx + 1);
       }
       if (type === 'sub' && moveIdx < data.length) {
+        const rect = ref.current
+          .closest('#scrollRef')
+          .nextSibling.childNodes[moveIdx + 2].getBoundingClientRect();
         setMoveIdx(moveIdx + 1);
+        console.log(rect, window.innerHeight);
+        if (rect.y + 45 > window.innerHeight) {
+          ref.current.closest('#scrollRef').nextSibling.scrollTo({
+            left: rect.left,
+            top: (rect.top + window.innerHeight) / 2,
+            behavior: 'auto',
+          });
+        }
       }
     } else if (e.keyCode === 38) {
       // 위 방향키
+      const rect = ref.current
+        .closest('#scrollRef')
+        .nextSibling.childNodes[moveIdx + 2].getBoundingClientRect();
       if (moveIdx > 0) {
+        // console.log(rect);
+        if (type === 'sub') {
+          console.log(rect, '위방향키', window.screenTop);
+        }
         setMoveIdx(moveIdx - 1);
       }
     } else if (e.keyCode === 13) {

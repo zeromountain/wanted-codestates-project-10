@@ -32,7 +32,10 @@ const SubSearch = forwardRef(
         ref={ref}
       >
         <div className="flex flex-col relative overflow-y-scroll">
-          <div className="w-full min-h-[56px] flex border-b-2 border-blue-600">
+          <div
+            className="w-full min-h-[56px] flex border-b-2 border-blue-600"
+            id="scrollRef"
+          >
             <div className="w-full h-full flex flex-col mx-auto px-5">
               <div className="h-full flex items-center">
                 <FaArrowLeft
@@ -47,7 +50,7 @@ const SubSearch = forwardRef(
                   className="flex-1 outline-0"
                   value={word}
                   onChange={handleChangeWord}
-                  onKeyDown={e => handleKeyMove(e, 'sub')}
+                  onKeyDown={e => handleKeyMove(e, 'sub', inputRef)}
                 />
                 <div className="ml-2" />
                 <GrSearch />
