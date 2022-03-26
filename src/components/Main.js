@@ -16,6 +16,7 @@ const Main = () => {
   const [moveIdx, setMoveIdx] = useState(-1);
   const [selected, setSelected] = useState(null);
   const [timer, setTimer] = useState(0);
+  const [scrollOffset, setScrollOffset] = useState(0);
   const [debounceValue, setDebounceValue] = useState(null);
 
   const {
@@ -47,24 +48,18 @@ const Main = () => {
           .closest('#scrollRef')
           .nextSibling.childNodes[moveIdx + 2].getBoundingClientRect();
         setMoveIdx(moveIdx + 1);
-        console.log(rect, window.innerHeight);
-        if (rect.y + 45 > window.innerHeight) {
-          ref.current.closest('#scrollRef').nextSibling.scrollTo({
-            left: rect.left,
-            top: (rect.top + window.innerHeight) / 2,
-            behavior: 'auto',
-          });
-        }
+        console.log(rect.top);
+        setScrollOffset(rect.top);
       }
     } else if (e.keyCode === 38) {
       // 위 방향키
-      const rect = ref.current
-        .closest('#scrollRef')
-        .nextSibling.childNodes[moveIdx + 2].getBoundingClientRect();
       if (moveIdx > 0) {
         // console.log(rect);
         if (type === 'sub') {
-          console.log(rect, '위방향키', window.screenTop);
+          const rect = ref.current
+            .closest('#scrollRef')
+            .nextSibling.childNodes[moveIdx + 2].getBoundingClientRect();
+          setScrollOffset(rect.top);
         }
         setMoveIdx(moveIdx - 1);
       }
@@ -108,6 +103,7 @@ const Main = () => {
           handleChangeWord={handleChangeWord}
           handleKeyMove={handleKeyMove}
           selected={selected}
+          scrollOffset={scrollOffset}
         />
       )}
     </>
