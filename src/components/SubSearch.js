@@ -17,6 +17,7 @@ const SubSearch = forwardRef(
       isFetching,
       handleKeyMove,
       selected,
+      scrollOffset,
     },
     ref,
   ) => {
@@ -62,6 +63,7 @@ const SubSearch = forwardRef(
             isLoading={isLoading}
             isFetching={isFetching}
             selected={selected}
+            scrollOffset={scrollOffset}
           />
         </div>
       </div>
@@ -78,6 +80,7 @@ SubSearch.propTypes = {
   isFetching: PropTypes.bool.isRequired,
   handleKeyMove: PropTypes.func.isRequired,
   selected: PropTypes.any,
+  scrollOffset: PropTypes.number.isRequired,
 };
 
 export default SubSearch;

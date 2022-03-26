@@ -1,13 +1,45 @@
-import React from 'react';
+import React, {useEffect, useLayoutEffect, useRef} from 'react';
 import {GrSearch} from 'react-icons/gr';
 import PropTypes from 'prop-types';
 
-const Recommend = ({data, isLoading, isFetching, selected}) => {
+const Recommend = ({data, isLoading, isFetching, selected, scrollOffset}) => {
+  const scrollRef = useRef(null);
+
   const handleMoveLink = name => {
     window.open(`https://clinicaltrialskorea.com/studies?condition=${name}`);
   };
+
+  useEffect(() => {
+    if (scrollRef) {
+      console.log('scrollTop', scrollRef.current.scrollTop);
+      console.log('scrollOffset', scrollOffset);
+      // scrollRef.current.addEventListener('scroll', () => {
+
+      // });
+    }
+  });
+
+  useLayoutEffect(() => {
+    if (scrollRef && scrollOffset > 850) {
+      scrollRef.current.scrollTo({
+        left: 24,
+        top: scrollRef.current.scrollTop + scrollOffset - 60,
+        behavior: 'smooth',
+      });
+      // if (scrollRef && scrollRef.current.scrollTop < 60) {
+      //   scrollRef.current.scrollTo({
+      //     left: 24,
+      //     top: scrollRef.current.scrollTop - scrollOffset,
+      //     behavior: 'smooth',
+      //   });
+      // }
+    }
+  }, [scrollOffset]);
   return (
-    <div className="w-full flex flex-col desktop:absolute desktop:top-[100%] desktop:left-0 desktop:mt-2 px-6 pt-6 pb-4 bg-white desktop:rounded-3xl overflow-y-auto">
+    <div
+      className="w-full flex flex-col desktop:absolute desktop:top-[100%] desktop:left-0 desktop:mt-2 px-6 pt-6 pb-4 bg-white desktop:rounded-3xl overflow-y-auto"
+      ref={scrollRef}
+    >
       <div className="text-gray-400 text-xs">
         {isLoading || isFetching
           ? '검색중...'
@@ -37,6 +69,7 @@ Recommend.propTypes = {
   isLoading: PropTypes.bool.isRequired,
   isFetching: PropTypes.bool.isRequired,
   selected: PropTypes.any,
+  scrollOffset: PropTypes.number,
 };
 
 export default Recommend;
