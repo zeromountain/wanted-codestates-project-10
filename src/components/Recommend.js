@@ -11,9 +11,11 @@ const Recommend = ({data, isLoading, isFetching, selected, scrollOffset}) => {
 
   useEffect(() => {
     if (scrollRef) {
-      scrollRef.current.addEventListener('scroll', () => {
-        console.log(scrollRef.current.scrollTop);
-      });
+      console.log('scrollTop', scrollRef.current.scrollTop);
+      console.log('scrollOffset', scrollOffset);
+      // scrollRef.current.addEventListener('scroll', () => {
+
+      // });
     }
   });
 
@@ -21,16 +23,16 @@ const Recommend = ({data, isLoading, isFetching, selected, scrollOffset}) => {
     if (scrollRef && scrollOffset > 850) {
       scrollRef.current.scrollTo({
         left: 24,
-        top: scrollOffset,
+        top: scrollRef.current.scrollTop + scrollOffset - 60,
         behavior: 'smooth',
       });
-      if (scrollRef && scrollOffset < 0) {
-        scrollRef.current.scrollTo({
-          left: 24,
-          top: scrollOffset,
-          behavior: 'smooth',
-        });
-      }
+      // if (scrollRef && scrollRef.current.scrollTop < 60) {
+      //   scrollRef.current.scrollTo({
+      //     left: 24,
+      //     top: scrollRef.current.scrollTop - scrollOffset,
+      //     behavior: 'smooth',
+      //   });
+      // }
     }
   }, [scrollOffset]);
   return (
