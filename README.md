@@ -25,14 +25,9 @@
 - 다음 URL로 접속하여 일부분(검색 영역)을 클론 코딩해주세요. (옵션 사항)
     - [https://clinicaltrialskorea.com/](https://clinicaltrialskorea.com/)
     
-    <img src="https://i.ibb.co/z7NBtRF/1.png">
-    
 - 질환명 검색시 추천 하는 부분을 만듭니다.
     
-    <img src="https://i.ibb.co/GxhDTns/2.png">
-    
-    - 검색어 추천 API는 다음을 사용합니다. (경우에 따라 로컬에서 mockup으로 사용하셔도 됩니다.)
-    - [https://api.clinicaltrialskorea.com/api/v1/search-conditions/?name={검색어](https://api.clinicaltrialskorea.com/api/v1/search-conditions/?name={검색어)}
+    - 검색어 추천 API를 사용합니다. (경우에 따라 로컬에서 mockup으로 사용하셔도 됩니다.)
         - 예제) 검색어에 ‘암’을 넣었을경우
         
         ```json
